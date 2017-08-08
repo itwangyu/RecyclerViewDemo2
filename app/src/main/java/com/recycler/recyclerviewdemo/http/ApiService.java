@@ -5,6 +5,7 @@ import com.recycler.recyclerviewdemo.bean.ImageData;
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by WangYu on 2017/7/19.
@@ -20,4 +21,7 @@ public interface ApiService {
 //    Flowable<CmsEntity> getInfo();
     @GET("福利/{num}/{page}")
     Flowable<ImageData> getImageData(@Path("num") int num,@Path("page") int page);
+
+    @GET("/carrier/v3/mobiles/{mobile}/mxreport")
+    Flowable<String> getReportBasic(@Path("mobile") String mobile, @Query("task_id") String taskId);
 }

@@ -24,6 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.NormalListActivity" />
+        <activity android:name=".activity.StickyHeaderActivity" />
+        <activity android:name=".activity.CardActivity" />
     </application>
 
 </manifest>

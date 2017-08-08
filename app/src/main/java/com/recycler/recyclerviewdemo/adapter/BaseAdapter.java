@@ -89,9 +89,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         final ViewHolder viewHolder = (ViewHolder) holder;
         convert(viewHolder, mDatas.get(position),position);
 
-        viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        viewHolder.getConvertView().setOnClickListener(view -> {
+            if (mItemClickListener != null) {
                 mItemClickListener.onItemClick(viewHolder, mDatas.get(position), position);
             }
         });
@@ -269,11 +268,21 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         mDatas.addAll(0, datas);
         notifyDataSetChanged();
     }
+    public List<T> getData() {
+        return mDatas;
+    }
 
     public void setNewData(List<T> datas) {
         mDatas.clear();
         mDatas.addAll(datas);
         notifyDataSetChanged();
+    }
+
+    public void removeData(int position) {
+        if (position<mDatas.size()&&position>=0) {
+            mDatas.remove(position);
+            notifyDataSetChanged();
+        }
     }
 
     /**

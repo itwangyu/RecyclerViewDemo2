@@ -62,7 +62,9 @@ public class RetrofitUtil {
                     .addConverterFactory(GsonConverterFactory.create(getGsonInstance()))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(getOkHttpInstance())
-                    .baseUrl("http://gank.io/api/data/").build();
+                    .baseUrl("http://gank.io/api/data/")
+//                    .baseUrl("https://api.51datakey.com/")
+                    .build();
         }
         return retrofit.create(tClass);
     }
@@ -147,6 +149,7 @@ public class RetrofitUtil {
                         .header("AppType", "TPOS")
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
+                        .header("Authorization","Token"+" 9dfb415d43704092aeee0056fcbcd617")
                         .method(orignaRequest.method(), orignaRequest.body())
                         .build();
 
@@ -215,7 +218,7 @@ public class RetrofitUtil {
                     if (loadingListener != null) {
                         loadingListener. onComplete();
                     }
-                    Log.i(TAG, "onComplete: ");
+//                    Log.i(TAG, "onComplete: ");
                 })
                 .doOnError(throwable -> {
                             Log.i(TAG, "获取失败: ");
